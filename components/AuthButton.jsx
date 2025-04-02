@@ -9,7 +9,7 @@ export function AuthButton() {
     return (
       <>
         <p>Welcome, {session.user.name}</p>
-        <button onClick={() => signOut()}>Sign Out</button>
+        <button className="py-3 px-3 bg-black text-white" onClick={() => signOut()}>Sign Out</button>
       </>
     );
   }
