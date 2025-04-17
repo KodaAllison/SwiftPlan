@@ -1,6 +1,7 @@
 import "./globals.css";
 import Providers from "../../components/Providers";
 import '@mantine/core/styles.css';
+import TopNav from "../../components/TopNav";
 
 
 export const metadata = {
@@ -12,7 +13,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <TopNav />
+          {children}
+        </Providers>
       </body>
     </html>
   );

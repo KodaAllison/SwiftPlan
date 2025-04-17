@@ -67,8 +67,8 @@ export default function LessonPlanForm({ onSubmit }) {
   );
 
   return (
-    <Container size="sm" mt="xl">
-    <Paper withBorder shadow="sm" p="lg" radius="md" maw={600} mx="auto" mt="xl">
+    <Container size="sm" >
+    <Paper  shadow="sm" p="lg" radius="md" maw={600} mx="auto"  style={{ backgroundColor: '#5F25D9' }}>
       <Title order={2} mb="md">Create a Lesson Plan</Title>
       {error && <Notification color="red" mb="md">{error}</Notification>}
       <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -90,7 +90,17 @@ export default function LessonPlanForm({ onSubmit }) {
           <Group justify="flex-end" mt="md">
             <Button 
             type="submit"
-            className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition font-medium"
+            variant="filled"
+            styles={{
+                root: {
+                  backgroundColor: '#00ff99', // neon green
+                  color: 'black',
+                  fontWeight: 'bold',
+                  borderRadius: '9999px',
+                },
+              }}
+            radius="xl"
+            fullWidth
             >
                 Generate Lesson Plan
             </Button>
