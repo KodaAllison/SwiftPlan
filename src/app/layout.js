@@ -1,5 +1,8 @@
 import "./globals.css";
-import SessionWrapper from "../../components/SessionWrapper";
+import Providers from "../../components/Providers";
+import '@mantine/core/styles.css';
+
+
 export const metadata = {
   title: "SwiftPlan",
   description: "AI-Powered Lesson Planning",
@@ -9,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <SessionWrapper>{children}</SessionWrapper>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
