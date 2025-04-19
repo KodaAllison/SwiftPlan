@@ -1,9 +1,16 @@
 import { NextResponse } from 'next/server';
+import { buildLessonPrompt } from '../../../../utils/buildLessonPrompt';
+import { lessonPlanSchema } from '../../../../lib/lessonPlanSchema';
 
 export async function POST(req) {
   const body = await req.json();
+  const result = lessonPlanSchema.safeParse(body)
 
-  const prompt = `Create a ${body.duration} lesson plan for ${body.subject} at ${body.ageGroup} level. The topic is "${body.title}". The objective is: ${body.objective}. Preferred style: ${body.style || 'none'}. Keywords: ${body.keywords || 'none'}. Notes: ${body.notes || 'none'}. Return the plan in sections: starter, main, extension, and adaptations.`;
+  if (!result.success) {
+    return NextResponse.json({error: 'Invalid input'}, {status: 400})
+  }
+
+    const prompt = buildLessonPrompt(result.data)
 
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -21,6 +28,10 @@ export async function POST(req) {
 
     const json = await response.json();
     const output = json.choices?.[0]?.message?.content;
+
+    if (!output) {
+        return  NextResponse.json({error: 'No response from OpenAI'}, {status:502})
+    }
 
     return NextResponse.json({ output });
   } catch (err) {

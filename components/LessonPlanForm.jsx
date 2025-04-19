@@ -27,7 +27,6 @@ export default function LessonPlanForm({ onSubmit }) {
       ageGroup: '',
       duration: '',
       objective: '',
-      keywords: '',
       style: '',
       notes: '',
     },
@@ -66,16 +65,23 @@ export default function LessonPlanForm({ onSubmit }) {
           />
           <TextInput label="Duration" placeholder="e.g. 45 mins" {...form.getInputProps('duration')} required />
           <Textarea label="Objective" placeholder="What should students learn?" {...form.getInputProps('objective')} required />
-          <TextInput label="Keywords" placeholder="e.g. volcano, lava, eruption" {...form.getInputProps('keywords')} />
-          <TextInput label="Preferred Activities" placeholder="e.g. hands-on, quiz" {...form.getInputProps('style')} />
-          <Textarea label="Special Notes" placeholder="Any specific needs or adaptations?" {...form.getInputProps('notes')} />
+          
+          
+            <details className="mt-4">
+                <summary className="cursor-pointer ...">Additional Parameters (optional)</summary>
+                <div className="mt-3 space-y-4">
+                    <TextInput label="Preferred Activities" placeholder="e.g. hands-on, quiz" {...form.getInputProps('style')} />
+                    <Textarea label="Special Notes" placeholder="Any specific needs or adaptations?" {...form.getInputProps('notes')} />
+                </div>
+            </details>
+
           <Group justify="flex-end" mt="md">
             <Button 
             type="submit"
             variant="filled"
             styles={{
                 root: {
-                  backgroundColor: '#00ff99', // neon green
+                  backgroundColor: '#00ff99', 
                   color: 'black',
                   fontWeight: 'bold',
                   borderRadius: '9999px',
