@@ -10,10 +10,25 @@ export default function NewLessonPage() {
 
     const handleGenerate = async (values) => {
     console.log('Generating lesson plan with:', values);
-    setPlanData(values)
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+        });
     
-
-    // TODO: API call here
+        const json = await res.json();
+    
+        if (!res.ok) {
+          console.error('Error from API:', json.error);
+          return;
+        }
+    
+        setPlanData(json.output);
+      } catch (err) {
+        console.error('Failed to generate lesson plan:', err);
+      }
+    
   };
 
   return (
