@@ -3,9 +3,9 @@
 import Image from 'next/image';
 import { Menu } from '@headlessui/react';
 import { useSession, signOut } from 'next-auth/react';
+import { MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 
-export default function TopNav() {
-  const { data: session } = useSession();
+export default function TopNav({session}) {
 
   return (
     <header className="w-full text-black px-6 py-2 flex justify-between items-center shadow-2xl border-b-4 border-[#5F25D9]">
@@ -21,7 +21,7 @@ export default function TopNav() {
         <span className="text-2xl text-[#5F25D9] font-semibold tracking-wide">SwiftPlan</span>
       <div className="flex items-center gap-2">
       <Menu as="div" className="relative inline-block text-left">
-          <Menu.Button>
+          <MenuButton>
 
         {session?.user?.image ? (
           <Image
@@ -34,23 +34,22 @@ export default function TopNav() {
         ) : (
           <div className="w-8 h-8 bg-gray-600 rounded-full" />
         )}
-        </Menu.Button>
-        <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right bg-white border border-gray-200 rounded-md shadow-lg focus:outline-none z-50">
+        </MenuButton>
+        <MenuItems className="absolute right-0 mt-2 w-48 origin-top-right bg-white border border-gray-200 rounded-md shadow-lg focus:outline-none z-50">
             <div className="py-1">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    onClick={() => signOut()}
-                    className={`${
-                      active ? 'bg-gray-100' : ''
-                    } w-full text-left px-4 py-2 text-sm text-gray-700`}
-                  >
-                    Log out
-                  </button>
-                )}
-              </Menu.Item>
+            <MenuItem as="button"
+                onClick={() => signOut()}
+                className={({ active }) =>
+                  `w-full text-left px-4 py-2 text-sm text-gray-700 ${
+                    active ? 'bg-gray-100' : ''
+                  }`
+                }
+              >
+                Log out
+            </MenuItem>
+
             </div>
-          </Menu.Items>
+          </MenuItems>
         </Menu>
       </div>
     </header>

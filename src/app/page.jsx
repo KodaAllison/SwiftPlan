@@ -10,15 +10,11 @@ export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  // 🔄 Auto-redirect if signed in
   useEffect(() => {
     if (status === 'authenticated') {
       router.push('/Lesson/New');
     }
   }, [status, router]);
-
-  // While checking auth, don't flash login UI
-  if (status === 'loading') return null;
 
   return (
     <main className="flex min-h-screen">
