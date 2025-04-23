@@ -4,18 +4,21 @@ import Image from 'next/image';
 import { Menu } from '@headlessui/react';
 import { useSession, signOut } from 'next-auth/react';
 import { MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import Link from 'next/link';
 
 export default function TopNav({session}) {
 
   return (
     <header className="w-full text-black px-6 py-2 flex justify-between items-center shadow-2xl border-b-4 border-[#5F25D9]">
       <div className="flex items-center gap-2">
-        <Image
-          src="/logo.png"
-          alt="SwiftPlan Logo"
-          width={48}
-          height={48}
-        />
+        <Link href="/Lesson/Dashboard" className="flex items-center gap-2">
+          <Image
+            src="/logo.png"
+            alt="SwiftPlan Logo"
+            width={48}
+            height={48}
+          />
+        </Link>
         
       </div>
         <span className="text-2xl text-[#5F25D9] font-semibold tracking-wide">SwiftPlan</span>
