@@ -18,14 +18,14 @@ export function buildLessonPrompt(data) {
   4. Differentiation Strategies – At least two explicit methods to support varied pupil needs, including support for students with Special Educational Needs (SEND).  
   5. Engagement Strategy – One interactive, student-led or hands-on approach.  
   6. Extension Tasks – Challenging activities for advanced learners or early finishers.  
-  7. Digital Teaching Resources – Generate full content for any worksheets, quiz questions, diagrams, or reflection tasks. Use clear subheadings such as ### Worksheet, ### Quiz Questions, ### Diagram Description, or ### Exit Ticket.  
+  7. Digital Teaching Resources – Generate full content for any worksheets, quiz questions, diagrams, or reflection tasks 
   8. Conclusion – A short reflection or wrap-up activity with timing.
   
   Instructions:  
   • Ensure all sections include specific timings that total exactly ${data.duration} minutes.  
   • Use a formal and concise tone suitable for professional educators.  
   • Ensure all resources are fully digital — no printing or physical materials.  
-  • Format using clear ## Section and ### Subsection headings for display in a web app.
+  • Format using clear ## Section headings for display in a web app.
   `.trim();
   }
       

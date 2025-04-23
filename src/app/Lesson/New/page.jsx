@@ -33,7 +33,7 @@ export default function NewLessonPage() {
 
   return (
     <main className="min-h-screen bg-white text-white px-4 py-6">
-      <div className="max-w-6xl mx-auto bg-[#5F25D9] flex flex-col md:flex-row gap-6 px-6 py-6">
+      <div className="max-w-500 mx-auto bg-[#5F25D9] flex flex-col rounded-2xl md:flex-row gap-6 px-6 py-6">
         {/* Lefthand side = Form */}
         <div className="w-full md:w-1/2">
           <LessonPlanForm onSubmit={handleGenerate} />

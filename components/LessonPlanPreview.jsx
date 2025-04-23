@@ -1,13 +1,18 @@
 export default function LessonPlanPreview({ data }) {
     if (!data) {
       return (
-        <div className="bg-white text-black p-6 rounded-xl shadow-lg min-h-[300px]">
+        <div className="bg-white text-black p-6 rounded-xl shadow-lg min-h-[30px]">
           <p className="text-gray-600 italic">Fill out the form to see your lesson plan preview.</p>
         </div>
       );
     }
     
-    const sections = data.split('## ').filter(Boolean);
+    const cleaned = data
+      .replace(/^[ \t]*#[^#\n].*$/gm, '') 
+      .replace(/\n{3,}/g, '\n\n')             
+      .trim();
+ 
+    const sections = cleaned.split(/^##\s+/gm).filter(Boolean);
 
     return (
       <div className="bg-white text-black p-6 rounded-xl shadow-lg space-y-6 whitespace-pre-wrap">
@@ -18,24 +23,14 @@ export default function LessonPlanPreview({ data }) {
         const content = contentLines.join('\n');
 
         return (
-          <div key={index} className="space-y-2">
-            <h3 className="text-xl font-semibold text-purple-800">{titleLine.trim()}</h3>
+          <details key={index} closed className="border border-purple-200 rounded-lg p-4 scroll-smooth">
+            <summary className="cursor-pointer text-lg font-semibold text-purple-800 mb-2">
+              {titleLine.trim()}
+            </summary>
             <div className="space-y-2">
-              {content.split('### ').map((sub, i) => {
-                if (i === 0) {
-                  return <p key={i}>{sub.trim()}</p>;
-                }
-
-                const [subTitle, ...subContent] = sub.split('\n');
-                return (
-                  <div key={i}>
-                    <h4 className="font-medium text-indigo-600">{subTitle.trim()}</h4>
-                    <p>{subContent.join('\n').trim()}</p>
-                  </div>
-                );
-              })}
+              <p>{content.trim()}</p>
             </div>
-          </div>
+          </details>
         );
       })}
     </div>
