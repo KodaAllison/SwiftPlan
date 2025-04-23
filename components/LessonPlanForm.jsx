@@ -16,7 +16,7 @@ import {
 import { useCallback, useState } from 'react';
 import { lessonPlanSchema } from '../lib/lessonPlanSchema';
 
-export default function LessonPlanForm({ onSubmit }) {
+export default function LessonPlanForm({ onSubmit, onSave, showSave }) {
   const [error, setError] = useState(null);
 
   const form = useForm({
@@ -47,6 +47,21 @@ export default function LessonPlanForm({ onSubmit }) {
     [onSubmit]
   );
 
+  const handleSaveClick = async () => {
+    const validated = lessonPlanSchema.safeParse(form.values);
+    if (!validated.success) {
+      setError('Please fix the form errors before saving.');
+      return;
+    }
+  
+    try {
+      await onSave(form.values);
+    } catch (err) {
+      console.error('Save failed:', err);
+      setError('Something went wrong saving the lesson plan.');
+    }
+  };
+
   return (
     <Container size="sm" >
     <Paper  shadow="sm" p="lg" radius="md" maw={600} mx="auto"  style={{ backgroundColor: '#5F25D9' }}>
@@ -74,7 +89,24 @@ export default function LessonPlanForm({ onSubmit }) {
                     <Textarea label="Special Notes" placeholder="Any specific needs or adaptations?" {...form.getInputProps('notes')} />
                 </div>
             </details>
-
+            {showSave && onSave && (
+              <Button
+                type="button"
+                onClick={handleSaveClick}
+                variant="outline"
+                fullWidth
+                styles={{
+                  root: {
+                    borderColor: '#00ff99',
+                    color: '#00ff99',
+                    fontWeight: 'bold',
+                    borderRadius: '9999px',
+                  },
+                }}
+              >
+                Save Lesson Plan
+              </Button>
+            )}
           <Group justify="flex-end" mt="md">
             <Button 
             type="submit"
