@@ -39,7 +39,7 @@ export default function NewLessonPage() {
 
   const handleSave = async (formValues) => {
     try {
-      const res = await fetch('/api/lesson/save', {
+      const res = await fetch('/api/lessons', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
