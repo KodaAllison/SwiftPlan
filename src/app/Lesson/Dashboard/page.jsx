@@ -57,7 +57,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="text-right text-xs md:text-sm flex gap-3">
                     <span>{new Date(plan.createdAt).toLocaleDateString()}</span>
-                    <Link href={`/lesson/edit/${plan.id}`} className="text-[#00ff99] font-bold">[EDIT]</Link>
+                    <Link href={`/Lesson/Edit/${plan.id}`} className="text-[#00ff99] font-bold">[EDIT]</Link>
                     <Link href={`/api/lesson/pdf/${plan.id}`} className="text-white">[PDF]</Link>
                     <button className="text-red-500">🗑️</button>
                   </div>
