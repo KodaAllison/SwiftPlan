@@ -1,11 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
+import EditLessonForm from '../../../../../components/EditLessonPlan';
 
 export default function EditLessonPage() {
     const { id } = useParams();
+    const router = useRouter();
     const [lesson, setLesson] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [content, setContent] = useState([]);
   
     useEffect(() => {
       if (!id) return;
@@ -16,6 +20,7 @@ export default function EditLessonPage() {
           if (!res.ok) throw new Error('Failed to fetch lesson');
           const data = await res.json();
           setLesson(data);
+          setContent(data.content || '');
         } catch (error) {
           console.error(error);
         } finally {
@@ -26,6 +31,21 @@ export default function EditLessonPage() {
       fetchLesson();
     }, [id]);
   
+    const isContentEdited = content !== (lesson?.content || '');
+    const handleSave = async () => {
+        const res = await fetch(`/api/lesson/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ content }),
+        });
+    
+        if (res.ok) {
+          router.push('/Lesson/Dashboard');
+        } else {
+          alert('Failed to save lesson content.');
+        }
+      };
+
     if (loading) {
       return <p className="text-white p-6">Loading lesson data...</p>;
     }
@@ -35,36 +55,23 @@ export default function EditLessonPage() {
     }
 
   return (
-    <main className="p-6 max-w-5xl mx-auto text-white space-y-6">
-    <h1 className="text-3xl font-bold text-[#00ff99]">Edit Lesson Plan</h1>
-
-    <div className="bg-[#5F25D9] p-4 rounded-xl shadow-md space-y-2">
-      <div>
-        <h2 className="text-xl font-semibold">{lesson.title}</h2>
+    <main className="p-6 max-w-6xl mx-auto text-white">
+      <div className="mb-4">
+        <Link
+          href="/Lesson/Dashboard"
+          className="text-sm text-[#5F25D9] underline hover:text-[#00ff99] transition"
+        >
+          ← Back to Dashboard
+        </Link>
       </div>
 
-      <div className="flex flex-wrap gap-8 pt-2">
-        <div>
-          <h2 className="font-semibold">Subject</h2>
-          <p>{lesson.subject}</p>
-        </div>
-
-        <div>
-          <h2 className="font-semibold">Age Group</h2>
-          <p>{lesson.yearGroup}</p>
-        </div>
-
-        <div>
-          <h2 className="font-semibold">Last Updated</h2>
-          <p>{new Date(lesson.updatedAt).toLocaleDateString()}</p>
-        </div>
-      </div>
-    </div>
-
-    <div className="bg-white text-black p-4 rounded-md shadow-md">
-      <h2 className="text-lg font-semibold mb-2">Lesson Content (read-only for now)</h2>
-      <pre className="whitespace-pre-wrap">{lesson.content}</pre>
-    </div>
-  </main>
+      <EditLessonForm
+        lesson={lesson}
+        content={content}
+        setContent={setContent}
+        isContentEdited={isContentEdited}
+        handleSave={handleSave}
+      />
+    </main>
   );
 }
