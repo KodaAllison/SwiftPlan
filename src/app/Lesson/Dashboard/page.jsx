@@ -25,13 +25,10 @@ export default function DashboardPage() {
   );
 
   return (
-    <main className='text-white py-6'>
-      <div className="max-w-400 mx-auto bg-[#5F25D9] rounded-2xl p-6 shadow-xl">
+    <main className='text-white p-6'>
+      <div className="w-full mx-auto bg-[#5F25D9] rounded-2xl p-6 shadow-xl">
         <h1 className="text-3xl font-bold mb-6">My Lesson Plans</h1>
-        {session?.user?.name && (
-          <p className="mb-4 text-lg">Welcome back, {session.user.name}</p>
-        )}
-
+        
         <input
           type="text"
           placeholder="Search..."
@@ -58,8 +55,27 @@ export default function DashboardPage() {
                   <div className="text-right text-xs md:text-sm flex gap-3">
                     <span>{new Date(plan.createdAt).toLocaleDateString()}</span>
                     <Link href={`/Lesson/Edit/${plan.id}`} className="text-[#00ff99] font-bold">[EDIT]</Link>
-                    <Link href={`/api/lesson/pdf/${plan.id}`} className="text-white">[PDF]</Link>
-                    <button className="text-red-500">🗑️</button>
+                    <Link href={`/api/lesson/download/${plan.id}`} className="text-white">[DOWNLOAD]</Link>
+                    <button
+                      className="text-red-400 cursor-pointer" 
+                      onClick={async () => {
+                        if (confirm('Are you sure you want to delete this lesson plan?')) {
+                          try {
+                            const res = await fetch(`/api/lesson/${plan.id}`, { method: 'DELETE' });
+                            if (res.ok) {
+                              setPlans(prev => prev.filter(p => p.id !== plan.id));
+                            } else {
+                              alert('Failed to delete.');
+                            }
+                          } catch (err) {
+                            console.error('Delete failed', err);
+                            alert('Something went wrong.');
+                          }
+                        }
+                      }} 
+                    >
+                      [DELETE]
+                    </button>
                   </div>
                 </div>
               ))

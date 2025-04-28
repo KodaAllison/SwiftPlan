@@ -3,6 +3,7 @@
 import LessonPlanForm from "../../../../components/LessonPlanForm";
 import LessonPlanPreview from "../../../../components/LessonPlanPreview"; 
 import { useState } from 'react';
+import Link from "next/link";
 
 
 export default function NewLessonPage() {
@@ -39,7 +40,7 @@ export default function NewLessonPage() {
 
   const handleSave = async (formValues) => {
     try {
-      const res = await fetch('/api/lessons', {
+      const res = await fetch('/api/lesson', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -66,8 +67,16 @@ export default function NewLessonPage() {
   
 
   return (
-    <main className="min-h-screen bg-white text-white px-4 py-6">
-      <div className="max-w-400 mx-auto bg-[#5F25D9] flex flex-col rounded-2xl md:flex-row gap-6 px-6 py-6">
+    <main className="text-white p-6">
+      <div className="mb-4">
+        <Link
+          href="/Lesson/Dashboard"
+          className="text-sm text-[#5F25D9] underline hover:text-[#00ff99] transition"
+        >
+          ← Back to Dashboard
+        </Link>
+      </div>
+      <div className="mx-auto bg-[#5F25D9] flex flex-col rounded-2xl md:flex-row gap-6 px-6 py-6">
         {/* Lefthand side = Form */}
         <div className="w-full md:w-1/2">
           <LessonPlanForm onSubmit={handleGenerate} onSave={handleSave} showSave={!!planData} />

@@ -62,3 +62,34 @@ export async function PUT(req, context) {
     return NextResponse.json({ error: 'Server error updating lesson' }, { status: 500 });
   }
 }
+
+export async function DELETE(req, { params }) {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user?.email) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = params;
+
+  try {
+    const lesson = await prisma.lessonPlan.findUnique({ where: { id } });
+
+    if (!lesson) {
+      return NextResponse.json({ error: "Lesson not found" }, { status: 404 });
+    }
+
+    const user = await prisma.user.findUnique({ where: { email: session.user.email } });
+
+    if (!user || lesson.userId !== user.id) {
+      return NextResponse.json({ error: "Access denied" }, { status: 403 });
+    }
+
+    await prisma.lessonPlan.delete({ where: { id } });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("[DELETE LESSON ERROR]", error);
+    return NextResponse.json({ error: "Server error deleting lesson" }, { status: 500 });
+  }
+}
