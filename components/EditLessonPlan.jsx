@@ -54,12 +54,13 @@ export default function EditLessonForm({ lesson, content, setContent, isContentE
           Save
         </button>
 
-        <button
-          disabled
-          className="px-6 py-2 rounded-full bg-[#00ff99] text-black font-bold opacity-50 cursor-not-allowed"
-        >
-          Download
-        </button>
+        <a
+            href={`/api/lesson/download/${lesson.id}`}
+            className="px-6 py-2 rounded-full bg-[#00ff99] text-black font-bold hover:bg-white hover:text-[#00ff99] transition"
+            download
+            >
+            Download
+        </a>
       </div>
     </div>
   );
