@@ -42,25 +42,21 @@ export default function EditLessonForm({ lesson, content, setContent, isContentE
       </div>
 
       <div className="flex flex-col sm:flex-row justify-end items-center gap-4 mt-8">
-        <button
-          onClick={handleSave}
-          disabled={!isContentEdited}
-          className={`px-6 py-2 rounded-full font-bold transition ${
-            !isContentEdited
-              ? 'bg-[#00ff99] text-black cursor-not-allowed opacity-50'
-              : 'bg-[#00ff99] text-[#5F25D9] border-[#00ff99] hover:bg-white '
-          }`}
-        >
-          Save
-        </button>
-
-        <a
+      <a
             href={`/api/lesson/download/${lesson.id}`}
-            className="px-6 py-2 rounded-full bg-[#00ff99] text-black font-bold hover:bg-white hover:text-[#00ff99] transition"
+            className="px-6 py-2 rounded-full border border-[#00ff99] bg-[#5F25D9] hover:bg-[#00ff99] hover:text-[#5F25D9] text-[#00ff99] transition"
             download
             >
             Download
         </a>
+        <button
+          onClick={handleSave}
+          className={`px-6 py-2 rounded-full transition bg-[#00ff99] text-[#5F25D9] border border-[#00ff99] hover:bg-white`}
+        >
+          Save
+        </button>
+
+        
       </div>
     </div>
   );

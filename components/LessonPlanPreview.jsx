@@ -23,7 +23,7 @@ export default function LessonPlanPreview({ data }) {
         const content = contentLines.join('\n');
 
         return (
-          <details key={index} closed className="border border-purple-200 rounded-lg p-4 scroll-smooth">
+          <details key={index} className="border border-purple-200 rounded-lg p-4 scroll-smooth">
             <summary className="cursor-pointer text-lg font-semibold text-purple-800 mb-2">
               {titleLine.trim()}
             </summary>

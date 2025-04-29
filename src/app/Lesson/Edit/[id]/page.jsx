@@ -9,7 +9,8 @@ export default function EditLessonPage() {
     const router = useRouter();
     const [lesson, setLesson] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [content, setContent] = useState([]);
+    const [content, setContent] = useState('');
+    const [initialContent, setInitialContent] = useState('');
   
     useEffect(() => {
       if (!id) return;
@@ -21,6 +22,7 @@ export default function EditLessonPage() {
           const data = await res.json();
           setLesson(data);
           setContent(data.content || '');
+          setInitialContent(data.content || '');
         } catch (error) {
           console.error(error);
         } finally {
@@ -31,7 +33,8 @@ export default function EditLessonPage() {
       fetchLesson();
     }, [id]);
   
-    const isContentEdited = content !== (lesson?.content || '');
+    const isContentEdited = content !== initialContent;
+
     const handleSave = async () => {
         const res = await fetch(`/api/lesson/${id}`, {
           method: 'PUT',

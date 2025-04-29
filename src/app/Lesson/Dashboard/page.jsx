@@ -83,11 +83,10 @@ export default function DashboardPage() {
           </div>
         )}
 
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-right">
           <Link
             href="/Lesson/New"
-            className="inline-block hover:bg-white hover:text-[#00ff99] px-6 py-2 rounded-full font-bold bg-[#00ff99] text-black transition"
-          >
+            className="inline-block px-8 py-2 rounded-full border border-[#00ff99] hover:bg-[#5F25D9] bg-[#00ff99] text-[#5F25D9] hover:text-[#00ff99] transition">
             Create New
           </Link>
         </div>

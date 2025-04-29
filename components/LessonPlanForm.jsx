@@ -89,39 +89,23 @@ export default function LessonPlanForm({ onSubmit, onSave, showSave }) {
                     <Textarea label="Special Notes" placeholder="Any specific needs or adaptations?" {...form.getInputProps('notes')} />
                 </div>
             </details>
-            {showSave && onSave && (
+            
+          <Group justify="flex-end" mt="md">
+          {showSave && onSave && (
               <Button
                 type="button"
                 onClick={handleSaveClick}
-                variant="outline"
                 fullWidth
-                styles={{
-                  root: {
-                    borderColor: '#00ff99',
-                    color: '#00ff99',
-                    fontWeight: 'bold',
-                    borderRadius: '9999px',
-                  },
-                }}
-              >
+                unstyled
+                className="px-6 py-2 rounded-full border border-[#00ff99] hover:bg-[#00ff99] bg-[#5F25D9] text-[#00ff99] hover:text-[#5F25D9] font-bold transition">
                 Save Lesson Plan
               </Button>
             )}
-          <Group justify="flex-end" mt="md">
             <Button 
             type="submit"
-            variant="filled"
-            styles={{
-                root: {
-                  backgroundColor: '#00ff99', 
-                  color: 'black',
-                  fontWeight: 'bold',
-                  borderRadius: '9999px',
-                },
-              }}
-            radius="xl"
             fullWidth
-            >
+            unstyled
+            className="px-6 py-2 rounded-full border border-[#00ff99] bg-[#00ff99] hover:bg-[#5F25D9] hover:text-[#00ff99] text-[#5F25D9] font-bold transition">
                 Generate Lesson Plan
             </Button>
           </Group>
