@@ -1,3 +1,14 @@
+/**
+ * LessonPlanPreview Component
+ *
+ * Displays a formatted preview of a generated lesson plan using collapsible sections
+ * If no plan has been generated, a placeholder message is shown. 
+ *
+ * @param {object} props
+ * @param {string} props.data 
+ *
+ */
+
 export default function LessonPlanPreview({ data }) {
     if (!data) {
       return (

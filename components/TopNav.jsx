@@ -6,6 +6,18 @@ import { useSession, signOut } from 'next-auth/react';
 import { MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import Link from 'next/link';
 
+/**
+ * TopNav Component
+ *
+ * Displays the top navigation bar for the app, including:
+ * - Logo and title
+ * - User profile image as a dropdown trigger
+ * - Logout option via dropdown menu
+ *
+ * @param {object} props
+ * @param {object} props.session - The current user session from NextAuth
+ */
+
 export default function TopNav({session}) {
 
   return (

@@ -4,6 +4,17 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import EditLessonForm from '../../../../../components/EditLessonPlan';
 
+/**
+ * EditLessonPage
+ *
+ * A client-side page  that:
+ * - Fetches a lesson plan by ID when the page loads
+ * - Allows the user to edit the content of that lesson
+ * - Sends PUT request when user tries to save changes
+ *
+ * Handles loading, error, and update states.
+ */
+
 export default function EditLessonPage() {
     const { id } = useParams();
     const router = useRouter();

@@ -16,6 +16,17 @@ function cleanLessonContent(content) {
 }
 
 
+/**
+ * GET /api/lesson/download/[id]
+ *
+ * Downloads a lesson plan as a plain `.txt` file.
+ * Only accessible to the owner of the lesson (authenticated user).
+ *
+ * @param {Request} req - Incoming request object
+ * @param {object} context - Route context containing the lesson ID
+ * @returns {Response} A file download response or an error
+ */
+
 export async function GET(req, context) {
   const params = await context.params;
   const id = params.id;

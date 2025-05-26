@@ -3,6 +3,13 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]/route';
 import { prisma } from "../../../../lib/db/prisma";
 
+/**
+ * GET /api/lesson
+ *
+ * Fetches all lesson plans created by the currently logged in user.
+ *
+ * @returns {Response} JSON array of lessons, ordered newest first, or error response
+ */
 export async function GET() {
   const session = await getServerSession(authOptions);
 
@@ -24,6 +31,15 @@ export async function GET() {
     return NextResponse.json({ error: 'Server error fetching lessons' }, { status: 500 });
   }
 }
+
+/**
+ * POST /api/lesson
+ *
+ * Saves a new lesson plan for the user.
+ *
+ * @param {Request} req - Incoming request with JSON payload
+ * @returns {Response} JSON containing the new lesson ID or error message
+ */
 
 export async function POST(req) {
   const session = await getServerSession(authOptions);

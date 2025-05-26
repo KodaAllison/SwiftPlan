@@ -4,6 +4,13 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
+/**
+ * DashboardPage
+ *
+ * Displays a searchable list of the user's saved lesson plans.
+ * Fetches data from the /api/lesson endpoint.
+ */
+
 export default function DashboardPage() {
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);

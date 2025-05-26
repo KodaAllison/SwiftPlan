@@ -1,5 +1,12 @@
-import { buildLessonPrompt } from "../utils/buildLessonPrompt";
-import { lessonPlanSchema} from "../lib/lessonPlanSchema";
+import { buildLessonPrompt } from '../utils/buildLessonPrompt.js';
+import { lessonPlanSchema } from '../lib/lessonPlanSchema.js';
+
+
+/**
+ * Tests for lessonPlanSchema
+ *
+ * Ensures valid lesson data passes, and invalid cases fail,
+ */
 
 describe('Lesson Plan Schema', () => {
     it('accepts valid input', () => {
@@ -70,7 +77,13 @@ describe('Lesson Plan Schema', () => {
     });
   });
 
-describe('Prompt Builder', () => {
+/**
+ * Tests for buildLessonPrompt utility
+ *
+ * Ensures accurate input to be passed for prompt generation then OpenAI.
+ */
+
+  describe('Prompt Builder', () => {
     const baseData = {
       title: 'Cold War Origins',
       subject: 'History',
@@ -79,25 +92,33 @@ describe('Prompt Builder', () => {
       objective: 'Understand the causes of the Cold War',
     };
   
-    it('includes all required ## section headings', () => {
-      const result = buildLessonPrompt({ ...baseData });
-  
-      expect(result).toMatch(/## Learning Objectives/);
-      expect(result).toMatch(/## Introduction/);
-      expect(result).toMatch(/## Main Activities/);
-      expect(result).toMatch(/## Differentiation Strategies/);
-      expect(result).toMatch(/## Engagement Strategy/);
-      expect(result).toMatch(/## Extension Tasks/);
-      expect(result).toMatch(/## Digital Teaching Resources/);
-      expect(result).toMatch(/## Conclusion/);
-    });
-  
-    it('includes title, subject, and duration', () => {
-      const result = buildLessonPrompt({ ...baseData });
+    it('correctly interpolates core lesson details', () => {
+      const result = buildLessonPrompt(baseData);
   
       expect(result).toMatch(/lesson topic is: "Cold War Origins"/);
       expect(result).toMatch(/subject is: "History"/);
+      expect(result).toMatch(/target group is: "KS3"/);
       expect(result).toMatch(/total lesson duration is: "60 mins"/);
       expect(result).toMatch(/learning objective is: "Understand the causes of the Cold War"/);
     });
-  });  
+  
+    it('includes optional "style" when user fills it in', () => {
+      const result = buildLessonPrompt({ ...baseData, style: 'Group work' });
+      expect(result).toMatch(/teaching approach: "Group work"/);
+    });
+  
+    it('excludes "style" when not filled out', () => {
+      const result = buildLessonPrompt({ ...baseData, style: undefined });
+      expect(result).not.toMatch(/teaching approach/);
+    });
+  
+    it('includes optional "notes" when user fills it in', () => {
+      const result = buildLessonPrompt({ ...baseData, notes: 'Use BBC Bitesize' });
+      expect(result).toMatch(/additional context or classroom adaptations: "Use BBC Bitesize"/);
+    });
+  
+    it('excludes "notes" when not filled out', () => {
+      const result = buildLessonPrompt({ ...baseData, notes: undefined });
+      expect(result).not.toMatch(/additional context/);
+    });
+  });

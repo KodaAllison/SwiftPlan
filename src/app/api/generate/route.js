@@ -2,6 +2,23 @@ import { NextResponse } from 'next/server';
 import { buildLessonPrompt } from '../../../../utils/buildLessonPrompt';
 import { lessonPlanSchema } from '../../../../lib/lessonPlanSchema';
 
+/**
+ * POST /api/lesson/generate
+ *
+ * This endpoint receives a lesson plan form submission,
+ * validates it with Zod, builds a prompt from the data,
+ * and sends it to the OpenAI API to generate lesson plan
+ *
+ * Return Values:
+ * - 200 with generated lesson content
+ * - 400 if input validation fails
+ * - 502 if OpenAI fails to return output
+ * - 500 on unexpected server error
+ *
+ * @param {Request} req - The incoming POST request with JSON lesson plan data
+ * @returns {Response} JSON containing generated lesson plan or an error
+ */
+
 export async function POST(req) {
   const body = await req.json();
   const result = lessonPlanSchema.safeParse(body)

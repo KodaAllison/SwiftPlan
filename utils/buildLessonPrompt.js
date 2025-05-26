@@ -1,3 +1,22 @@
+/**
+ * buildLessonPrompt utility function
+ * 
+ * Builds a structure prompt to send to OpenAI 
+ *  - ensures consistent output
+ *  - ensures it is tailored to teacher needs
+ * 
+ * @param {object} data - Form values used to define the lesson
+ * @param {string} data.title - Title of the lesson
+ * @param {string} data.subject - Subject area (e.g., History, Science)
+ * @param {string} data.ageGroup - Target student group (e.g., KS3, KS4)
+ * @param {string} data.duration - Total duration of the lesson in minutes
+ * @param {string} data.objective - Main learning goal for the lesson
+ * @param {string} [data.style] - (Optional) Preferred teaching style (e.g., group work, discussion)
+ * @param {string} [data.notes] - (Optional) Additional context or special adaptations
+ * @returns {string} A fully structured prompt for OpenAI
+ */
+
+
 export function buildLessonPrompt(data) {
     return `
   You are a highly experienced teacher creating a detailed, digital-first lesson plan for classroom use.

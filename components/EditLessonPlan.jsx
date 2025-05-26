@@ -1,3 +1,18 @@
+/**
+ * EditLessonForm Component
+ * 
+ * Allows teachers to view and edit an existing lesson plan.
+ * - Displays lesson metadata (subject, age group, title, last updated date).
+ * - Provides a text editor for editing lesson content.
+ * - Includes actions to save changes or download the lesson plan as a file.
+ * 
+ * @param {object} lesson - The lesson data object
+ * @param {string} content - The current editable lesson content
+ * @param {function} setContent - Setter function updates content state
+ * @param {boolean} isContentEdited - Boolean to see if changes were made
+ * @param {function} handleSave - Function for when the save button is clicked
+ **/
+
 'use client';
 
 import dynamic from 'next/dynamic';

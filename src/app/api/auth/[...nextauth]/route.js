@@ -3,6 +3,13 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "../../../../../lib/db/prisma";
 
+/**
+ * Authentication Options for NextAuth.js
+ * 
+ * This sets up Google as an OAuth provider
+ * and adds sessions to my PostgreSQL database via the Prisma Adapter.
+ */
+
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [

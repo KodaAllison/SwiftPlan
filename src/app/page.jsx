@@ -12,12 +12,12 @@ export default function Home() {
 
   useEffect(() => {
     if (status === 'authenticated') {
-      router.push('/Lesson/New');
+      router.push('/Lesson/Dashboard');
     }
   }, [status, router]);
 
   return (
-    <main className="flex min-h-screen">
+    <main className="flex flex-col md:flex-row min-h-screen">
       <section className="bg-[#5F25D9] text-white flex-1 flex flex-col items-center justify-center p-8">
         <Image
           src="/logo.png"

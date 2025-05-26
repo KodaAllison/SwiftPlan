@@ -1,3 +1,13 @@
+/**
+ * LessonPlanForm Component
+ * 
+ * Provides a UI for teachers to create a lesson plan.
+ * 
+ * @param {function} onSubmit - Called when the form is submitted to generate a plan.
+ * @param {function} [onSave] - Optional function to save the plan.
+ * @param {boolean} showSave - Ensures save only shows when a plan is there to be saved
+ */
+
 'use client';
 
 import { useForm, zodResolver } from '@mantine/form';

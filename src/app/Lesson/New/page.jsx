@@ -5,6 +5,16 @@ import LessonPlanPreview from "../../../../components/LessonPlanPreview";
 import { useState } from 'react';
 import Link from "next/link";
 
+/**
+ * NewLessonPage
+ *
+ * Provides user interface for creating a new lesson plan.
+ * - Submits form data to the OpenAI API to generate plan.
+ * - Displays a preview of the generated lesson.
+ * - Allows saving the result to the database.
+ *
+ * Form and preview have a responsive layout.
+ */
 
 export default function NewLessonPage() {
     const [planData, setPlanData] = useState(null);
