@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SwiftPlan
+
+**SwiftPlan** was developed for my dissertation project in the third year of my degree. It is a Next.js web application that helps educators generate and manage lesson plans. Users sign in with Google, create and edit lesson plans, and can download them. The app uses AI-assisted generation, Mantine for UI, NextAuth for authentication, and Prisma with a SQLite-compatible database.
+
+I researched teacher overwork and the time educators spend on lesson planning, and included statistics in the dissertation on how much a tool like SwiftPlan could save. I also carried out in-depth research into prompt engineering techniques relevant to the application (the landscape has likely changed considerably since the project was written). The dissertation documented the full lifecycle: project planning with Gantt charts, requirements gathering and specification, iterative development, and testing. It concluded with a poster presentation where I summarised my work and demoed SwiftPlan to visitors at my stand.
+
+**Links:** [Dissertation (PDF)](docs/dissertation.pdf) · [Portfolio](#)
+
+The dissertation is included in this repo as a PDF. Add your portfolio URL above when you have it.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+To run the project locally:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser. You’ll need to configure environment variables (see below) for full functionality.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### OpenAI API key (lesson plan generation)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Lesson plan generation calls the OpenAI Chat Completions API (GPT-4). You need:
 
-## Learn More
+1. **An OpenAI API key** — Create one at [platform.openai.com](https://platform.openai.com/api-keys).
+2. **Set it in your environment** — Add `OPENAI_API_KEY=your-key-here` to a `.env` or `.env.local` file in the project root (do not commit this file).
+3. **Usage and tokens** — Each generation uses your OpenAI account’s token quota. Usage is billed per token according to [OpenAI’s pricing](https://openai.com/pricing); ensure your account has credits or billing enabled if you want generation to work.
 
-To learn more about Next.js, take a look at the following resources:
+Without a valid `OPENAI_API_KEY`, the generate endpoint will fail when users try to create a lesson plan.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
+
+- **Next.js** (App Router)
+- **React** with **Mantine** (UI) and **React Hook Form**
+- **NextAuth** (Google sign-in) with **Prisma** adapter
+- **Prisma** (database)
+- **Tailwind CSS**
+
+---
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can deploy this Next.js app on [Vercel](https://vercel.com). See [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for details.
