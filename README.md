@@ -8,6 +8,8 @@ I researched teacher overwork and the time educators spend on lesson planning, a
 
 The dissertation is included in this repo as a PDF. Add your portfolio URL above when you have it.
 
+*Dissertation: © 2025. Submitted to Newcastle University, School of Computing (BSc). All rights reserved.*
+
 ---
 
 ## Getting Started
