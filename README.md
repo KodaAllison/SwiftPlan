@@ -4,7 +4,7 @@
 
 I researched teacher overwork and the time educators spend on lesson planning, and included statistics in the dissertation on how much a tool like SwiftPlan could save. I also carried out in-depth research into prompt engineering techniques relevant to the application (the landscape has likely changed considerably since the project was written). The dissertation documented the full lifecycle: project planning with Gantt charts, requirements gathering and specification, iterative development, and testing. It concluded with a poster presentation where I summarised my work and demoed SwiftPlan to visitors at my stand.
 
-**Links:** [Dissertation (PDF)](docs/dissertation.pdf) · [Portfolio](#)
+**Links:** [Dissertation (PDF)](docs/dissertation.pdf) 
 
 The dissertation is included in this repo as a PDF. Add your portfolio URL above when you have it.
 
