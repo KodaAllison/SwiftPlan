@@ -1,6 +1,6 @@
 # SwiftPlan
 
-**SwiftPlan** was developed for my dissertation project in the third year of my degree. It is a Next.js web application that helps educators generate and manage lesson plans. Users sign in with Google, create and edit lesson plans, and can download them. The app uses AI-assisted generation, Mantine for UI, NextAuth for authentication, and Prisma with a SQLite-compatible database.
+**SwiftPlan** was developed for my dissertation project in the third year of my degree. It is a Next.js web application that helps teachers generate and manage lesson plans. Users sign in with Google, create and edit lesson plans, and can download them. The app uses AI-assisted generation, Mantine for UI, NextAuth for authentication, and Prisma with a SQLite-compatible database.
 
 I researched teacher overwork and the time educators spend on lesson planning, and included statistics in the dissertation on how much a tool like SwiftPlan could save. I also carried out in-depth research into prompt engineering techniques relevant to the application (the landscape has likely changed considerably since the project was written). The dissertation documented the full lifecycle: project planning with Gantt charts, requirements gathering and specification, iterative development, and testing. It concluded with a poster presentation where I summarised my work and demoed SwiftPlan to visitors at my stand.
 
