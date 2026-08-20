@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# koder skill credentials must never be committed
+.claude/skills/koder-ticket/.koder.env
